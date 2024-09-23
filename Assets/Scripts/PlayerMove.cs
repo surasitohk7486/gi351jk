@@ -52,7 +52,7 @@ public class PlayerMove : MonoBehaviour
 
         }
 
-        if (jumpValue >= 20f && isGrounded)
+        if (jumpValue >= 10f && isGrounded)
         { 
             float tempx = moveInput * walkSpeed;
             float tempy = jumpValue;
