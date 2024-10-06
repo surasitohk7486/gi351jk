@@ -718,7 +718,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!70 &380823806
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -767,7 +767,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gbLight: {fileID: 1399127983}
-  nextLight: {fileID: 0}
   time: {fileID: 1558003578}
 --- !u!212 &380823808
 SpriteRenderer:
@@ -1535,7 +1534,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gbLight: {fileID: 1399127983}
-  nextLight: {fileID: 1419408112}
   time: {fileID: 1558003578}
 --- !u!212 &776280379
 SpriteRenderer:
@@ -1994,7 +1992,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!70 &1419408113
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2043,7 +2041,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gbLight: {fileID: 1399127983}
-  nextLight: {fileID: 380823805}
   time: {fileID: 1558003578}
 --- !u!212 &1419408115
 SpriteRenderer:
