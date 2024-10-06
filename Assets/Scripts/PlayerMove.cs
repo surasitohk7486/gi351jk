@@ -43,7 +43,7 @@ public class PlayerMove : MonoBehaviour
         }
         if (Input.GetKey("space") && isGrounded && canJump)
         {
-            jumpValue += 0.15f;
+            jumpValue += 0.25f;
         }
 
         if(Input.GetKeyDown("space") && isGrounded && canJump) 
@@ -52,7 +52,7 @@ public class PlayerMove : MonoBehaviour
 
         }
 
-        if (jumpValue >= 10f && isGrounded)
+        if (jumpValue >= 20f && isGrounded)
         { 
             float tempx = moveInput * walkSpeed;
             float tempy = jumpValue;
