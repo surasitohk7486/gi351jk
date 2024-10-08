@@ -7,12 +7,13 @@ public class PlayerMove : MonoBehaviour
     public float walkSpeed;
     private float moveInput;
     public bool isGrounded;
-    private Rigidbody2D rb;
+    [SerializeField] private Rigidbody2D rb;
     public LayerMask groundMask;
 
     public PhysicsMaterial2D bounceMat, norMat;
     public bool canJump = true;
     public float jumpValue = 0.0f;
+
     [SerializeField]
     GameObject audioSource;
 
@@ -75,7 +76,7 @@ public class PlayerMove : MonoBehaviour
 
         }
 
-        if (jumpValue >= 20f && isGrounded)
+        if (jumpValue >= 12.5f && isGrounded)
         { 
             float tempx = moveInput * walkSpeed;
             float tempy = jumpValue;
