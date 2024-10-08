@@ -2,114 +2,65 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PuzzleNumber : MonoBehaviour
 {
     public GameObject puzzlePanel;
-    
-    public TextMeshProUGUI[] numberSlots;
-    private int[] currentCode = { 0, 0, 0, 0 };
-    private int[] correctCode = { 0, 9, 1, 0 };
-    private int activeSlot = 0;
-    
-    private void Start()
-    {
-        puzzlePanel.SetActive(false);
-        UpdateNumberSlots();
-    }
+    public GameObject objectToDestroy;
+
+    [SerializeField] private TextMeshProUGUI Ans;
+
+    private string Answer = "0910";
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && !puzzlePanel.activeSelf)
-        {
-            OpenPuzzle();
-        }
-
         if (puzzlePanel.activeSelf)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 ClosePuzzle();
             }
+        }
+    }
+    public void Number(int num)
+    {
+        Ans.text += num.ToString();
+    }
 
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
-                TryUnlock();
-            }
-
-            // Change number in the active slot
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                ChangeNumber(1);
-            }
-            else if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                ChangeNumber(-1);
-            }
+    public void Check()
+    {
+        if(Ans.text == Answer)
+        {
+            //play sound
+            ClosePuzzle();
+        }
+        else
+        {
+            Ans.text = "";
+            
         }
     }
 
     private void OpenPuzzle()
     {
         puzzlePanel.SetActive(true);
-        
-        ChangeLighting(0.5f); // Reduce game light
     }
 
     private void ClosePuzzle()
     {
         puzzlePanel.SetActive(false);
-        
-        ChangeLighting(1f); // Restore game light
+        objectToDestroy.SetActive(false);
     }
 
-    private void ChangeLighting(float alpha)
+     void OnTriggerEnter2D(Collider2D other)
     {
-        // Implement lighting changes here, e.g., reducing brightness
-    }
-
-    private void ChangeNumber(int change)
-    {
-        currentCode[activeSlot] = (currentCode[activeSlot] + change + 10) % 10;
-        UpdateNumberSlots();
-    }
-    private void UpdateNumberSlots()
-    {
-        for (int i = 0; i < numberSlots.Length; i++)
+        if (other.gameObject.CompareTag("Player"))
         {
-            numberSlots[i].text = currentCode[i].ToString();
-        }
-    }
-
-    private void TryUnlock()
-    {
-        if (IsCorrectCode())
-        {
-            Unlock();
-        }
-        else
-        {
-            // Play wrong sound
-            Debug.Log("Wrong Code!");
-        }
-    }
-
-    private bool IsCorrectCode()
-    {
-        for (int i = 0; i < correctCode.Length; i++)
-        {
-            if (currentCode[i] != correctCode[i])
+            if (Input.GetKeyDown(KeyCode.E) && !puzzlePanel.activeSelf)
             {
-                return false;
+                OpenPuzzle();
             }
         }
-        return true;
-    }
-
-    private void Unlock()
-    {
-        // Play success sound
-        Debug.Log("Unlocked!");
-        ClosePuzzle();
     }
 }
