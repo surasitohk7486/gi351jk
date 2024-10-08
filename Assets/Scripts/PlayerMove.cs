@@ -13,6 +13,8 @@ public class PlayerMove : MonoBehaviour
     public PhysicsMaterial2D bounceMat, norMat;
     public bool canJump = true;
     public float jumpValue = 0.0f;
+    [SerializeField]
+    GameObject audioSource;
 
     [SerializeField]
     private Animator animator;
@@ -34,6 +36,16 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         moveInput = Input.GetAxisRaw("Horizontal");
+
+        if (Input.GetKey("d") || Input.GetKey("a"))
+        {
+            audioSource.SetActive(true);
+        }
+        else
+        {
+            audioSource.SetActive(false);
+        }
+        
 
         if(jumpValue == 0.0f && isGrounded)
         {
