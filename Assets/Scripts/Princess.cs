@@ -5,14 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class Princess : MonoBehaviour
 {
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        // ตรวจสอบว่าผู้เล่นเป็นคนมาชน
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Player collided with Princess"); // ใช้ Debug เพื่อตรวจสอบการชน
+            Debug.Log("Player triggered with object");
             SceneManager.LoadScene("End");
         }
     }
+
 
 }
