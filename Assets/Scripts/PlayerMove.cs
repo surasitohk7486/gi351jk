@@ -14,6 +14,16 @@ public class PlayerMove : MonoBehaviour
     public bool canJump = true;
     public float jumpValue = 0.0f;
 
+    [SerializeField]
+    private Animator animator;
+
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;
+
+    private static int IsPlayerRunAnimatorHash = Animator.StringToHash("IsPlayerRun");
+
+    private static int IsPlayerJumpAnimatorHash = Animator.StringToHash("IsPlayerJump");
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +54,7 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetKey("space") && isGrounded && canJump)
         {
             jumpValue += 0.25f;
+            animator.SetBool(IsPlayerJumpAnimatorHash, !isGrounded);
         }
 
         if(Input.GetKeyDown("space") && isGrounded && canJump) 
@@ -70,6 +81,10 @@ public class PlayerMove : MonoBehaviour
             canJump = true;
         }
 
+        spriteRenderer.flipX = moveInput < 0;
+
+        animator.SetBool(IsPlayerRunAnimatorHash, Mathf.Abs(moveInput) > 0);
+        
     }
 
     void ResetJump()
